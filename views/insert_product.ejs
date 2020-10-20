@@ -1,0 +1,43 @@
+<%- include("header.ejs") %>
+
+<body>
+    <%- include("navbar.ejs") %>
+
+    <div class="d-flex justify-content-center ">
+
+        <form class="col-sm-6" action="/insert_product" method="post">
+            <h1>Add New Product</h1>
+            <div class="form-group">
+                <label for="name">Peoduct name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label for="description">Peoduct description</label>
+                <textarea class="form-control" id="description" name="description"
+                    placeholder="Enter product description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="group">Product group</label>
+                <select class="form-control" id="group_id" name="group_id">
+                    <% for(let i = 0; i<groups.length; i++){ %>
+                    <option value=<%= groups[i].id %>> <%= groups[i].g_name %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="measuring unit">Measuring unit</label>
+                <select class="form-control" id="measuring_unit" name="measuring_unit">
+                    <option>pieces</option>
+                    <option>kg</option>
+                    <option>gm</option>
+                    <option>ltr</option>
+                    <option>Ml</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+<%- include("footer.ejs") %>

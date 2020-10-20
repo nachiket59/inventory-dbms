@@ -1,14 +1,29 @@
-var mysql = require('mysql');
-var connection = mysql.createConnection({
+var mysql = require('sync-mysql');
+var connection = new mysql({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'inventory'
 });
 
-function insert_product(data) {
-    connection.query("insert into products ")
+insert_products = (data) => {
+    let sql = "insert into products(name, description, group_id ,measuring_unit) values (?,?,?,?)";
+    try {
+        res = connection.query(sql, [data.name, data.description, data.group_id, data.measuring_unit])
+        return true
+    }
+    catch (err) {
+        console.log(err)
+        return false
+    }
 }
 
-connection.connect();
+get_groups = () => {
+    res = connection.query("select * from product_group")
+    return res
+}
+
+
 console.log("conneced to databse")
+
+module.exports = { insert_products, get_groups };
