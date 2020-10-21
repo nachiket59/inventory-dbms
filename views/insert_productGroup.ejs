@@ -1,0 +1,44 @@
+<%- include("header.ejs") %>
+
+<body>
+  <%- include("navbar.ejs") %>
+
+  <div class="d-flex justify-content-center">
+    <form class="col-sm-6" action="/insert_productGroup" method="post">
+      <h1>Add Supplier</h1>
+      <div class="form-group">
+        <label for="name">Product Group Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="g_name"
+          name="g_name"
+          placeholder="Enter Group name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description </label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          placeholder="Enter product group  description"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="group">Total items</label>
+        <input
+          type="number"
+          class="form-control"
+          id="total_items"
+          name="total_items"
+          placeholder="Enter number of items"
+          maxlength="12"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+<%- include("footer.ejs") %>

@@ -15,6 +15,27 @@ app.get("/insert_product", (req, res) => {
     console.log(grp)
     res.render("insert_product", { groups: grp, inserted: null })
 })
+app.get("/insert_creditorProfile", (req, res) => {
+    groups = db.get_groups();
+    console.log(groups);
+    res.render("insert_creditorProfile", groups);
+  });
+  app.get("/insert_supplier", (req, res) => {
+    groups = db.get_groups();
+    console.log(groups);
+    res.render("insert_supplier", groups);
+  });
+  app.get("/insert_retailer", (req, res) => {
+    groups = db.get_groups();
+    console.log(groups);
+    res.render("insert_retailer", groups);
+  });
+  
+  app.get("/insert_productGroup", (req, res) => {
+    groups = db.get_groups();
+    console.log(groups);
+    res.render("insert_productGroup", groups);
+  });
 app.post("/insert_product", (req, res) => {
     grp = db.get_groups()
     console.log((req.body))
@@ -27,6 +48,30 @@ app.post("/insert_product", (req, res) => {
     }
     console.log(s)
 })
+
+app.post("/insert_creditorProfile", (req, res) => {
+    console.log(req.body);
+    s = db.insert_creditorProfile(req.body);
+    console.log(s);
+  });
+  
+  app.post("/insert_supplier", (req, res) => {
+    console.log(req.body);
+    s = db.insert_supplier(req.body);
+    console.log(s);
+  });
+  
+  app.post("/insert_retailer", (req, res) => {
+    console.log(req.body);
+    s = db.insert_retailer(req.body);
+    console.log(s);
+  });
+
+  app.post("/insert_productGroup", (req, res) => {
+    console.log(req.body);
+    s = db.insert_productGroup(req.body);
+    console.log(s);
+  });  
 app.get("/place_order", (req, res) => {
     s = db.get_suppilers()
     res.render("place_order", { suppliers })

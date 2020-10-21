@@ -1,0 +1,66 @@
+<%- include("header.ejs") %>
+
+<body>
+  <%- include("navbar.ejs") %>
+
+  <div class="d-flex justify-content-center">
+    <form class="col-sm-6" action="/insert_creditorProfile" method="post">
+      <h1>Add Creditor</h1>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter Creditor name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Address </label>
+        <textarea
+          class="form-control"
+          id="address"
+          name="address"
+          placeholder="Enter Creditor Address"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="group">Phone number</label>
+        <input
+          type="number"
+          class="form-control"
+          id="phone"
+          name="phone"
+          placeholder="Enter Phone number"
+          maxlength="12"
+        />
+      </div>
+      <div class="form-group">
+        <label for="measuring unit">Total amount Payable</label>
+        <input
+          type="number"
+          class="form-control"
+          id="total_amt_payable"
+          name="total_amt_payable"
+          placeholder="Enter Total amount payable  number"
+          maxlength="12"
+        />
+      </div>
+      <div class="form-group">
+        <label for="measuring unit">Total amount Paid</label>
+        <input
+          type="number"
+          class="form-control"
+          id="amt_paid"
+          name="amt_paid"
+          placeholder="Enter Total amount paid  number"
+          maxlength="12"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+<%- include("footer.ejs") %>
