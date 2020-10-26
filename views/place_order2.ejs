@@ -1,0 +1,68 @@
+<%- include("header.ejs") %>
+
+<body>
+    <%- include("navbar.ejs") %>
+
+    <div class="d-flex justify-content-center ">
+        <div>
+
+            <h3 id="title">Select Products and quantities</h3>
+            <div class="form-row">
+                <div class="col">
+                    <input class="form-control" type="text" id="search_bar" placeholder="Type to search in products">
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary" id="submit">Proceed to checkout</button>
+                </div>
+            </div>
+            <br>
+            <ul class="list-group" id="totals">
+                <li class="list-group-item list-group-item-secondary" id="total_amount"></li>
+                <li class="list-group-item list-group-item-secondary" id="total_products"></li>
+
+            </ul>
+            <br />
+            <div id="tableview">
+                <table class="table table-hover" id="supplier_table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>select</th>
+                            <th scope="col">id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">group id</th>
+                            <th scope="col">description</th>
+                            <th scope="col">measuring unit</th>
+                            <th scope="col">cost price</th>
+                            <th scope="col">selling price</th>
+                            <th scope="col">MRP</th>
+                            <th scope="col">discount</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( let i = 0; i < products.length; i++ ) { %>
+                        <tr id=<%= products[i].id %>>
+                            <td><input class="check" type="checkbox">
+                            </td>
+                            <th scope="row"><%= products[i].id %> </th>
+                            <td><%= products[i].name %></td>
+                            <td><%= products[i].group_id %></td>
+                            <td><%= products[i].description %></td>
+                            <td><%= products[i].measuring_unit %></td>
+                            <td><%= products[i].cost_price %></td>
+                            <td><%= products[i].selling_price %></td>
+                            <td><%= products[i].mrp %></td>
+                            <td><%= products[i].discount %></td>
+                            <td><input class="quantity" type="text"></td>
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/place_order2.js"></script>
+</body>
+
+<%- include("footer.ejs") %>
