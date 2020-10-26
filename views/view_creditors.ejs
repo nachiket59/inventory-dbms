@@ -1,0 +1,61 @@
+
+<%- include("header.ejs") %>
+
+<body class="mt 32">
+  <%- include("navbar.ejs")%>
+<div style="margin-top: 30px;" >
+
+    <div class="container">
+        <h3>
+            <span>Creditors Profiles</span>
+            <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
+        </h3>
+        <div style="margin-left: 1000px; margin-top: 10px;">
+        <a class="btn btn-dark" href="insert_creditorProfile" role="button">Add Creditor</a>
+    </div>
+        <table class="table table-striped mt32 customers-list">
+            <thead>
+                <tr>
+                    <th>Creditor ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone No</th>
+                    <th>Total Amount Payable</th>
+                    <th>Amount Paid</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  for(let i = 0; i<creditors.length; i++){
+                %>
+                <tr>
+                    <td><%=creditors[i].id%></td>
+                    <td><%=creditors[i].name%></td>
+                    <td><%=creditors[i].address%></td>
+                    <td><%=creditors[i].phone%></td>
+                    <td><%=creditors[i].total_amt_payable%></td>
+                    <td><%=creditors[i].amt_paid%></td>
+                    <td><a class="btn btn-info" href="<%="update_creditor?id="+creditors[i].id%>" role="button">Update</a></td>
+                    <td><a class="btn btn-danger"href='<%="del_creditor?id="+creditors[i].id%>' role="button">
+                        <input type="hidden" value="<%=creditors[i].id%>"/>
+                        Delete</a></td>
+                </tr>
+                
+              <%}%>
+
+            </tbody>
+        </table>
+    </div>
+  
+    </div>
+    <div>
+            <script src="trans_view.js">
+       
+    </script>
+    
+        </div>
+    
+</body>
+
+<%- include("footer.ejs") %>

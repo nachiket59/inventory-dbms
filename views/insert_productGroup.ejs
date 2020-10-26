@@ -2,10 +2,19 @@
 
 <body>
   <%- include("navbar.ejs") %>
+  <% if (inserted == true) { %>
+    <div class="alert alert-success">
+        <strong>Success!</strong> New Product Group created  successfully!
+    </div>
+    <% } else if (inserted == false) { %>
+    <div class="alert alert-success">
+        <strong>Failure!</strong> Could not insert new Product Group!
+    </div>
+    <% } %>
 
   <div class="d-flex justify-content-center">
     <form class="col-sm-6" action="/insert_productGroup" method="post">
-      <h1>Add Supplier</h1>
+      <h1>Add Product Group</h1>
       <div class="form-group">
         <label for="name">Product Group Name</label>
         <input

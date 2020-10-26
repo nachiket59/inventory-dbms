@@ -1,0 +1,92 @@
+
+<%- include("header.ejs") %>
+
+<body class="mt 32">
+  <%- include("navbar.ejs")%>
+  <% if (update == true) { %>
+    <div class="alert alert-success">
+        <strong>Success!</strong> Product update successfully!
+    </div>
+    <% } else if (update == false) { %>
+    <div class="alert alert-danger">
+        <strong>Failure!</strong> Could not update product!
+    </div>
+    <% } %>
+  <% if (del == true) { %>
+    <div class="alert alert-success">
+        <strong>Success!</strong> Product Deleted  successfully!
+    </div>
+    <% } else if (del == false) { %>
+    <div class="alert alert-danger">
+        <strong>Failure!</strong> Could not  Delete this  Profile!
+    </div>
+    <% } %>
+<div style="margin-top: 30px;" >
+
+
+    <div class="container">
+        <h3>
+            <span>Products </span>
+            <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
+        </h3>
+        <div style="margin-left: 1000px; margin-top: 10px;">
+        <a class="btn btn-dark" href="insert_product" role="button">Add Product</a>
+    </div>
+        <table class="table table-striped mt32 customers-list">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Group ID</th>
+                    <th>Product Description</th>
+                    <th>Measuring Unit</th>
+                    <th>Product Group</th>
+                    <th>Product Group  Description</th>
+                    <th>Total Items</th>
+                    <th>Cost Price</th>
+                    <th>Selling Price</th>
+                    <th>MRP</th>
+                    <th>Discount </th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  for(let i = 0; i<product.length; i++){
+                %>
+                <tr>
+                    <td><%=product[i].id%></td>
+                    <td><%=product[i].name%></td>
+                    <td><%=product[i].group_id%></td>
+                    <td><%=product[i].description%></td>
+                    <td><%=product[i].measuring_unit%></td>
+                    <td><%=product[i].g_name%></td>
+                    <td><%=product[i].gdes%></td>
+                    <td><%=product[i].total_items%></td><%//P.cost_price ,P.selling_price,P.mrp,P.discount%>
+                    <td><%=product[i].cost_price%>
+                        <td><%=product[i].selling_price%>
+                            <td><%=product[i].mrp%>
+                                <td><%=product[i].discount%>
+                    <td><a class="btn btn-info" href="<%="update_product?id="+product[i].id%>" role="button">Update</a></td>
+                    <td><a class="btn btn-danger"href='<%="del_product?id="+product[i].id%>' role="button">
+                        <input type="hidden" value="<%=product[i].id%>"/>
+                        Delete</a></td>
+                </tr>
+                
+              <%}%>
+
+            </tbody>
+        </table>
+    </div>
+  
+    </div>
+    <div>
+            <script src="trans_view.js">
+       
+    </script>
+    
+        </div>
+    
+</body>
+
+<%- include("footer.ejs") %>

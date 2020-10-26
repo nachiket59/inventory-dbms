@@ -2,19 +2,10 @@
 
 <body>
   <%- include("navbar.ejs") %>
-  <% if (inserted == true) { %>
-    <div class="alert alert-success">
-        <strong>Success!</strong> New Supplier created  successfully!
-    </div>
-    <% } else if (inserted == false) { %>
-    <div class="alert alert-success">
-        <strong>Failure!</strong> Could not insert new Supplier Profile!
-    </div>
-    <% } %>
-
+  
   <div class="d-flex justify-content-center">
-    <form class="col-sm-6" action="/insert_supplier" method="post">
-      <h1>Add Supplier</h1>
+    <form class="col-sm-6" action="/supplier_update" method="POST">
+      <h1>Update Supplier </h1>
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -22,17 +13,20 @@
           class="form-control"
           id="name"
           name="name"
-          placeholder="Enter Supplier name"
+          value="<%=suppliers[0].name%>"
+          placeholder="Enter Creditor name"
         />
       </div>
       <div class="form-group">
         <label for="description">Address </label>
-        <textarea
+        <input type="text"
           class="form-control"
           id="address"
           name="address"
-          placeholder="Enter Supplier Address"
-        ></textarea>
+         
+          value="<%=suppliers[0].address%>"
+          placeholder="Enter Creditor Address"
+        />
       </div>
       <div class="form-group">
         <label for="group">Phone number</label>
@@ -41,22 +35,27 @@
           class="form-control"
           id="phone_no"
           name="phone_no"
+          value="<%=suppliers[0].phone_no%>"
           placeholder="Enter Phone number"
           maxlength="12"
         />
       </div>
       <div class="form-group">
-        <label for="measuring unit">Account number</label>
+        <label for="measuring unit">Account no </label>
         <input
           type="number"
           class="form-control"
           id="account_no"
           name="account_no"
-          placeholder="Enter Account  number"
+          value="<%=suppliers[0].account_no%>"
+          placeholder="Enter Account no "
           maxlength="12"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="hidden" name="id" value="<%=suppliers[0].id%>"/>
+      
+      <button style="margin-left: 30px;" type="submit" class="btn btn-primary">Submit</button>
+    </div>
     </form>
   </div>
 </body>

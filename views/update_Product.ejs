@@ -2,31 +2,23 @@
 
 <body>
     <%- include("navbar.ejs") %>
-    <% if (inserted == true) { %>
-    <div class="alert alert-success">
-        <strong>Success!</strong> New product inserted successfully!
-    </div>
-    <% } else if (inserted == false) { %>
-    <div class="alert alert-success">
-        <strong>Failure!</strong> Could not insert new product!
-    </div>
-    <% } %>
+  
     <div class="d-flex justify-content-center ">
 
-        <form class="col-sm-6" action="/insert_product" method="post">
-            <h1>Add New Product</h1>
+        <form class="col-sm-6" action="/product_update" method="post">
+            <h1>Update  Product</h1>
             <div class="form-group">
                 <label for="name">Product name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+                <input type="text" class="form-control" id="name" name="name"  value="<%=product[0].name%>" placeholder="Enter product name">
             </div>
             <div class="form-group">
                 <label for="description">Product description</label>
-                <textarea class="form-control" id="description" name="description"
+                <input type ="text" class="form-control" id="description" name="description"  value="<%=product[0].description%>"
                     placeholder="Enter product description"></textarea>
             </div>
             <div class="form-group">
                 <label for="group">Product group</label>
-                <select class="form-control" id="group_id" name="group_id">
+                <select class="form-control" id="group_id" name="group_id" value="<%=product[0].group_id%>" >
                     <% for(let i = 0; i<groups.length; i++){ %>
                     <option value=<%= groups[i].id %>> <%= groups[i].g_name %></option>
                     <% } %>
@@ -34,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="measuring unit">Measuring unit</label>
-                <select class="form-control" id="measuring_unit" name="measuring_unit">
+                <select class="form-control" id="measuring_unit" name="measuring_unit" value="<%=product[0].measuring_unit%>" >
                     <option>pieces</option>
                     <option>kg</option>
                     <option>gm</option>
@@ -59,6 +51,7 @@
                     <label>Discount</label>
                     <input type="text" class="form-control" placeholder="Enter cost price" name="discount">
                 </div>
+                <input type="hidden" name="id" value="<%=product[0].id%>"/>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

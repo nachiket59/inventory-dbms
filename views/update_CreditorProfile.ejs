@@ -2,18 +2,10 @@
 
 <body>
   <%- include("navbar.ejs") %>
-  <% if (inserted == true) { %>
-    <div class="alert alert-success">
-        <strong>Success!</strong> New Creditor Profile created  successfully!
-    </div>
-    <% } else if (inserted == false) { %>
-    <div class="alert alert-success">
-        <strong>Failure!</strong> Could not insert new Creditor Profile!
-    </div>
-    <% } %>
+  
   <div class="d-flex justify-content-center">
-    <form class="col-sm-6" action="/insert_creditorProfile" method="POST">
-      <h1>Add Creditor</h1>
+    <form class="col-sm-6" action="/creditors_update" method="POST">
+      <h1>Update Creditor</h1>
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -21,17 +13,20 @@
           class="form-control"
           id="name"
           name="name"
+          value="<%=creditors[0].name%>"
           placeholder="Enter Creditor name"
         />
       </div>
       <div class="form-group">
         <label for="description">Address </label>
-        <textarea
+        <input type="text"
           class="form-control"
           id="address"
           name="address"
+         
+          value="<%=creditors[0].address%>"
           placeholder="Enter Creditor Address"
-        ></textarea>
+        />
       </div>
       <div class="form-group">
         <label for="group">Phone number</label>
@@ -40,6 +35,7 @@
           class="form-control"
           id="phone"
           name="phone"
+          value="<%=creditors[0].phone%>"
           placeholder="Enter Phone number"
           maxlength="12"
         />
@@ -51,6 +47,7 @@
           class="form-control"
           id="total_amt_payable"
           name="total_amt_payable"
+          value="<%=creditors[0].total_amt_payable%>"
           placeholder="Enter Total amount payable  number"
           maxlength="12"
         />
@@ -63,8 +60,10 @@
           id="amt_paid"
           name="amt_paid"
           placeholder="Enter Total amount paid  number"
+          value="<%=creditors[0].amt_paid%>"
           maxlength="12"
         />
+        <input type="hidden" name="id" value="<%=creditors[0].id%>"/>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

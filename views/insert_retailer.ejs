@@ -2,6 +2,15 @@
 
 <body>
   <%- include("navbar.ejs") %>
+  <% if (inserted == true) { %>
+    <div class="alert alert-success">
+        <strong>Success!</strong> New Creditor Profile created  successfully!
+    </div>
+    <% } else if (inserted == false) { %>
+    <div class="alert alert-success">
+        <strong>Failure!</strong> Could not insert new Creditor Profile!
+    </div>
+    <% } %>
 
   <div class="d-flex justify-content-center">
     <form class="col-sm-6" action="/insert_retailer" method="post">

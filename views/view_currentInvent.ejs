@@ -1,0 +1,94 @@
+
+<%- include("header.ejs") %>
+
+<body class="mt 32">
+  <%- include("navbar.ejs")%>
+ 
+<div style="margin-top: 30px;" >
+
+
+    <div class="container">
+        <h3>
+            <span>Current Inventory  </span>
+            <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
+        </h3>
+        <div style="margin-left: 10px; margin-top: 5px; ">
+            <div class="alert alert-info" role="alert">
+            Total Current Inventory = Rs.<label id="result">x 
+        </div>
+    </div>
+    
+        <table class="table table-striped mt32 customers-list">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Group ID</th>
+                    <th>Product Description</th>
+                    <th>Measuring Unit</th>
+                    <th>Product Group</th>
+                    <th>Product Group  Description</th>
+            
+                    <th>Cost Price</th>
+                    <th>Selling Price</th>
+                    <th>MRP</th>
+                    <th>Discount </th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  for(let i = 0; i<current.length; i++){
+                %>
+                <tr>
+                    <td><%=current[i].product_id%></td>
+                    <td><%=current[i].name%></td>
+                    <td><%=current[i].group_id%></td>
+                    <td><%=current[i].description%></td>
+                    <td><%=current[i].measuring_unit%></td>
+                    <td><%=current[i].g_name%></td>
+                    <td><%=current[i].gdes%></td>
+          
+                    <td class ="cp"><%=current[i].cost_price%>
+                        <td><%=current[i].selling_price%>
+                            <td><%=current[i].mrp%>
+                                <td><%=current[i].discount%></td>
+                                <td class="qt"><%=current[i].quantity%></td>
+
+
+                </tr>
+                <tr>
+    
+                <tr></tr>
+              <%}%>
+
+            </tbody>
+        </table>
+    </div>
+  
+    </div>
+    <div>
+        </div>
+
+            
+             <script type="text/javascript">
+                var numbers = document.querySelectorAll(".cp");
+	var numb = document.querySelectorAll(".qt");
+var total = 1;
+var sum = 0;
+
+for (var i = 0; i < numbers.length; i++)
+{
+    sum += Number(numbers[i].innerText) * Number(numb[i].innerText) ;
+}
+
+document.getElementById("result").innerText = sum;
+		
+
+    </script>
+    <script src="trans_view.js" />
+    
+        </div>
+    
+</body>
+
+<%- include("footer.ejs") %>
