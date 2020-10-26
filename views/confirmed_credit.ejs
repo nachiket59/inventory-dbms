@@ -1,0 +1,17 @@
+<%- include("header.ejs") %>
+
+<body>
+    <%- include("navbar.ejs") %>
+    <% if (placed == true) { %>
+    <div class="alert alert-success">
+        <strong>Success!</strong> New order placed successfully!
+    </div>
+    <% } else if (placed == false) { %>
+    <div class="alert alert-success">
+        <strong>Failure!</strong> Could not place new order!
+    </div>
+    <% } %>
+    <a class="btn btn-primary" href="/">Go back to Home</button>
+</body>
+
+<%- include("footer.ejs") %>

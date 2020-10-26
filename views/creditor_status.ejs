@@ -1,0 +1,52 @@
+<%- include("header.ejs") %>
+<%- include("navbar.ejs") %>
+
+<body>
+    <div class="d-flex justify-content-center ">
+        <div>
+
+            <h3 id="title">Update Creditor status</h3>
+            <div class="form-row">
+                <div class="col">
+                    <input class="form-control" type="text" id="search_bar" placeholder="Type to search in products">
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary" id="submit">Proceed to checkout</button>
+                </div>
+            </div>
+
+            <br />
+            <div id="tableview">
+                <table class="table table-hover" id="order_table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Creditor Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Payable</th>
+                            <th scope="col">Paid</th>
+                            <th>update</th>>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for( let i = 0; i < creditor_details.length; i++ ) { %>
+                        <tr id=<%= creditor_details[i].id %>>
+                            <th scope="row"><%= creditor_details[i].id %> </th>
+                            <td><%= creditor_details[i].name %></td>
+                            <td><%= creditor_details[i].address %></td>
+                            <td><%= creditor_details[i].phone %></td>
+                            <td><%= creditor_details[i].total_amt_payable %></td>
+                            <td><input class="paid" type="text" value=<%= creditor_details[i].amt_paid %>></td>
+                            <td><button class="btn btn-primary update-button">update</button></td>
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/creditor_status.js"></script>
+</body>
+<%- include("footer.ejs") %>

@@ -1,0 +1,41 @@
+<%- include("header.ejs") %>
+
+<body>
+    <%- include("navbar.ejs") %>
+
+    <div class="d-flex justify-content-center ">
+        <div>
+            <h3>Select Supplier</h3>
+            <table class="table table-hover" id="supplier_table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Account number</th>
+                        <th>select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; i < suppliers.length; i++ ) { %>
+                    <tr id=<%= suppliers[i].id %>>
+                        <th scope="row"><%= suppliers[i].id %> </th>
+                        <td><%= suppliers[i].name %></td>
+                        <td><%= suppliers[i].address %></td>
+                        <td><%= suppliers[i].phone_no %></td>
+                        <td><%= suppliers[i].account_no %></td>
+                        <td><button class="btn button-primary select-button"
+                                onclick="select_supplier(this)">Select</button>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/place_order.js"></script>
+</body>
+
+<%- include("footer.ejs") %>

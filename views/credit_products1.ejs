@@ -1,0 +1,43 @@
+<%- include("header.ejs") %>
+
+<body>
+    <%- include("navbar.ejs") %>
+
+    <div class="d-flex justify-content-center ">
+        <div>
+            <h3>Select Creditor</h3>
+            <table class="table table-hover" id="creditor_table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Amount Payable</th>
+                        <th scope="col">Amount Paid</th>
+                        <th>select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for( let i = 0; i < creditors.length; i++ ) { %>
+                    <tr id=<%= creditors[i].id %>>
+                        <th scope="row"><%= creditors[i].id %> </th>
+                        <td><%= creditors[i].name %></td>
+                        <td><%= creditors[i].address %></td>
+                        <td><%= creditors[i].phone %></td>
+                        <td><%= creditors[i].total_amt_payable %></td>
+                        <td><%= creditors[i].amt_paid %></td>
+                        <td><button class="btn button-primary select-button"
+                                onclick="select_supplier(this)">Select</button>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/credit_products1.js"></script>
+</body>
+
+<%- include("footer.ejs") %>
