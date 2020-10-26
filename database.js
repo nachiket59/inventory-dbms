@@ -85,10 +85,29 @@ get_groups = () => {
 }
 get_suppilers = () => {
     res = connection.query("select * from supplier")
+<<<<<<< HEAD
     return res
 }
 <<<<<<< HEAD
 =======
+
+get_creditors = () => {
+    res = connection.query("select * from creditor_profile")
+    return res
+}
+
+get_products = () => {
+    res = connection.query("select * from products inner join price_details on products.id = price_details.product_id")
+    return res
+}
+
+get_product_by_id = (id) => {
+    res = connection.query("select * from products inner join price_details on products.id = price_details.product_id where id = ?", [id])
+}
+>>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
+=======
+    return res
+}
 
 get_creditors = () => {
     res = connection.query("select * from creditor_profile")
@@ -302,6 +321,23 @@ insert_order = (data) => {
         let res1, res2, res3
         let cost_prices = []
 
+<<<<<<< HEAD
+=======
+insert_order = (data) => {
+    try {
+        let d = new Date()
+        let supplier_id = data.supplier_id, products = data.products
+
+        let total_payable = 0
+        let paid = 0
+        let date = d.toISOString().split('T')[0] + ' '
+            + d.toTimeString().split(' ')[0];
+        let status = 0
+        let sql = "select cost_price from price_details where product_id = ?"
+        let res1, res2, res3
+        let cost_prices = []
+
+>>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
         for (let i = 0; i < products.length; i++) {
             res1 = connection.query(sql, [products[i].id])
             total_payable += res1[0].cost_price * products[i].quantity
@@ -444,5 +480,9 @@ quick_sell = (data) => {
         return false
     }
 }
+<<<<<<< HEAD
+module.exports = { quick_sell, update_creditor_paid, credit_products, get_creditors, update_order, get_order_details, insert_order, insert_products, get_groups, get_suppilers, get_products, get_product_by_id };
+>>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
+=======
 module.exports = { quick_sell, update_creditor_paid, credit_products, get_creditors, update_order, get_order_details, insert_order, insert_products, get_groups, get_suppilers, get_products, get_product_by_id };
 >>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
