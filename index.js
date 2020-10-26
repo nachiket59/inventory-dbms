@@ -90,6 +90,7 @@ app.post("/insert_product", (req, res) => {
     }
     console.log(s)
 })
+<<<<<<< HEAD
 
 app.post("/insert_creditorProfile", (req, res) => {
 
@@ -201,6 +202,8 @@ app.post("/insert_creditorProfile", (req, res) => {
     }
 
   })
+=======
+>>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
 app.get("/place_order1", (req, res) => {
     s = db.get_suppilers()
     //p = db.get_products()
@@ -408,6 +411,7 @@ app.post("/credit_products3", (req, res) => {
     credit_session.products = JSON.parse(req.body.products)
     res.json(credit_session)
 })
+
 
 app.get("/credit_products_final", (req, res) => {
     console.log(credit_session)

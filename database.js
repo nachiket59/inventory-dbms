@@ -98,6 +98,18 @@ get_products = () => {
     return res
 }
 
+
+
+get_creditors = () => {
+    res = connection.query("select * from creditor_profile")
+    return res
+}
+
+get_products = () => {
+    res = connection.query("select * from products inner join price_details on products.id = price_details.product_id")
+    return res
+}
+
 get_product_by_id = (id) => {
     res = connection.query("select * from products inner join price_details on products.id = price_details.product_id where id = ?", [id])
 }
@@ -275,14 +287,6 @@ console.log(data.id)
       return false;
     }
 };
-
-
-
-module.exports = { insert_products, get_groups, get_suppilers, insert_creditorProfile,insert_productGroup,insert_supplier,
-    insert_retailer,get_transactions, get_creditors,del_creditor,get_creditors_id , update_creditorProfile ,
-    update_product, del_product, get_product_by_id ,get_products , del_supplier,update_supplier,get_supplier_by_id,get_retailer,
-    get_currentInventory , get_product,get_product_byId
-};
 insert_order = (data) => {
     try {
         let d = new Date()
@@ -439,4 +443,10 @@ quick_sell = (data) => {
         return false
     }
 }
-module.exports = { quick_sell, update_creditor_paid, credit_products, get_creditors, update_order, get_order_details, insert_order, insert_products, get_groups, get_suppilers, get_products, get_product_by_id };
+    
+module.exports = { quick_sell, update_creditor_paid, credit_products, get_creditors, update_order, get_order_details, insert_order, insert_products, get_groups, get_suppilers, get_products, get_product_by_id,
+  insert_products, get_groups, get_suppilers, insert_creditorProfile,insert_productGroup,insert_supplier,
+  insert_retailer,get_transactions, get_creditors,del_creditor,get_creditors_id , update_creditorProfile ,
+  update_product, del_product, get_product_by_id ,get_products , del_supplier,update_supplier,get_supplier_by_id,get_retailer,
+  get_currentInventory , get_product,get_product_byId
+}
