@@ -1,15 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Inventory-Management</a>
+<nav class="navbar navbar-expand-lg " style="background-color:#eb2d53
+;">
+    <a class="navbar-brand" style="color: white;" href="#">Inventory-Management</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-item nav-link active"  style="color: white;" href="index">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link"   style="color: white;"href="view_currentInvent" tabindex="-1" aria-disabled="true">Current Inventory </a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Views
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="view_creditors">Creditors</a>
+                  <a class="dropdown-item" href="view_supplier">Suppliers</a>
+                  <a class="dropdown-item" href="view_product">Products</a>
+                  <a class="dropdown-item" href="view_transactions">Transactions</a>
+                </div>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: white;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Add
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="insert_creditorProfile"> Add Creditor Profiles</a>
+                  <a class="dropdown-item" href="insert_supplier"> Add Suppliers</a>
+                  <a class="dropdown-item" href="insert_product">Add Products</a>
+                  <a class="dropdown-item" href="insert_productGroup">Add Product Group</a>
+                  <a class="dropdown-item" href="insert_retailer">Add Retailer</a>
+
+                </div>
+              </li>
+             
         </div>
     </div>
+    <form class="form-inline my-2 my-lg-0">
+        <button class="btn  my-2 my-sm-0"  style=" background-color: white;"type="submit">LogOut</button>
+      </form>
 </nav>

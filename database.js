@@ -303,17 +303,20 @@ insert_order = (data) => {
 
         for (let i = 0; i < products.length; i++) {
             res1 = connection.query(sql, [products[i].id])
+            console.log("1sql")
             total_payable += res1[0].cost_price * products[i].quantity
             cost_prices.push(res1[0].cost_price)
             console.log(res1)
         }
         sql = "insert into order_details(supplier_id, date, status, total_payable, paid) values(?,?,?,?,?)"
         res2 = connection.query(sql, [supplier_id, date, status, total_payable, paid])
+        console.log("order_detail done")
         console.log(res2)
         let order_id = res2.insertId
         sql = "insert into ordered_products (order_id, product_id, quantity, status, cost_per_unit) values(?,?,?,?,?)"
         for (let i = 0; i < products.length; i++) {
             res3 = connection.query(sql, [order_id, products[i].id, products[i].quantity, 0, cost_prices[i]])
+            console.log("order_product done")
             console.log(res3)
         }
         return true
@@ -352,7 +355,7 @@ update_order = (data) => {
                     res3 = connection.query(sql, [res1[i].product_id, res1[i].quantity])
                 }
 
-                sql = "insert into transactions (type, product_id, quantity, date, price_per_unit) values(1,?,?,?,?)"
+                sql = "insert into transactions (type, product_id, quantity, p_date, price_per_unit) values(1,?,?,?,?)"
                 let d = new Date()
                 let date = d.toISOString().split('T')[0] + ' '
                     + d.toTimeString().split(' ')[0];
@@ -393,7 +396,7 @@ credit_products = (data) => {
         //let order_id = res2.insertId
 
         sql = "insert into credited_products (creditor_id, product_id,quantity, date, selling_price) values(?,?,?,?,?)"
-        sql2 = "insert into transactions(type, product_id, quantity, date , price_per_unit) values(?,?,?,?,?)"
+        sql2 = "insert into transactions(type, product_id, quantity, p_date , price_per_unit) values(?,?,?,?,?)"
         sql3 = "update current_inventory set quantity = quantity - ? where product_id = ?"
         for (let i = 0; i < products.length; i++) {
             res3 = connection.query(sql, [creditor_id, products[i].id, products[i].quantity, date, selling_prices[i]])
@@ -430,7 +433,7 @@ quick_sell = (data) => {
         + d.toTimeString().split(' ')[0];
     try {
         let sql = "update current_inventory set quantity = quantity - ? where product_id = ?"
-        let sql2 = "insert into transactions(type, product_id, quantity, date , price_per_unit) values(0,?,?,?,?)"
+        let sql2 = "insert into transactions(type, product_id, quantity, p_date , price_per_unit) values(0,?,?,?,?)"
         let sql3 = "select selling_price from price_details where product_id = ?"
         let price_per_unit = connection.query(sql3, [data.product_id])[0].selling_price
         console.log(price_per_unit)

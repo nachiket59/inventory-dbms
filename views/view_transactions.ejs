@@ -10,32 +10,32 @@
             <label for="name">To</label> <input type="date" id ="to_date"  name="to_date" class="form-control" placeholder="To"/>
         </div>
        
-<button type="submit" class="btn btn-primary" style="margin-top: 2px;"> Submit</button>
+<button type="submit" class="btn " style="background-color: #eb2d53; margin-top: 4px; margin-left: 965px;"> Submit</button>
         </form>
   
-        <h3 style="margin-top: 30px ;">
+        <h3 style="margin-top: 30px ; margin-right: 20px; margin-left: 8px;">
           <span>Transactions </span>
           <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
       </h3>
   <% if(transaction != null) {%>
-    <div class="alert alert-info" role="alert" style="margin: 5px; margin-left:10px ; margin-right: 20px;">
+    <div class="alert alert-info" role="alert" style="margin: 5px; margin-left:8px ; margin-right: 20px;">
       Total Revenue  = Rs.<label id="result">x 
   </div>
-  <div class="d-flex justify-content-center" style="margin-top: 5px; margin-left: 20px; margin-right: 10px;">
+  <div class="d-flex justify-content-center" style="margin-top: 5px; margin-left: 8px; margin-right: 20px;">
 
    
 
-  <table class="table table-striped mt32 customers-list">
-    <thead class="thead-dark">
+    <table class="table table-striped mt32 customers-list" style="background-color: white;">
+      <thead>
        
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Type</th>
-        <th scope="col">Product_Id</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Date</th>
-        <th scope="col">Price_per_unit</th>
-        <th scope="col">Total Price</th>
+        <th >Id</th>
+        <th >Type</th>
+        <th >Product_Id</th>
+        <th >Quantity</th>
+        <th >Date</th>
+        <th>Price_per_unit</th>
+        <th>Total Price</th>
 
       </tr>
       
@@ -61,15 +61,15 @@
                 buy_sum = (buy_sum + total_price);
             }
         %>
-        <tbody id="myTable">
+        <tbody>
       <tr>
-        <th scope="row"><%=transaction[i].id%></th>
-        <td class="type"><%=transaction[i].type%></td>
+        <th ><%=transaction[i].id%></th>
+        <td class="cp"><%=transaction[i].type%></td>
         <td><%=transaction[i].product_id%></td>
         <td><%=transaction[i].quantity%></td>
         <td><%=moment(transaction[i].p_date).format( 'MM/DD/YYYY')%></td>
         <td><%="Rs."+transaction[i].price_per_unit%></td>
-        <td class="tp"><%="Rs."+total_price%></td>
+        <td class="qt"> <%="Rs."+total_price%></td>
       </tr>
       <% }; 
         revenue = (sale_sum - buy_sum)
@@ -89,34 +89,20 @@
 <% } else {  %>  
     <p> NO data found</p>
     <% } %>
+
     <script type="text/javascript">
-                var total_price = document.querySelectorAll(".tp");
-	var type = document.querySelectorAll(".type");
-var buys_sum = 0;
-var sell_sum = 0;
-var t = " ";
-var revenue = 0;
+                var numbers = document.querySelectorAll(".cp");
+	var numb = document.querySelectorAll(".qt");
+var total = 1;
+var sum = 0;
+      console.log(numbers)
+      console.log(numb)
+      for (var i = 0; i < numbers.length; i++){
+        console.log(Number(numb[i].innerText))
+      }
 
-for (var i = 0; i < total_price.length; i++)
-{   
-    t =Number(type[i].innerText);
-    if(t == 1){
-      buys_sum += Number(total_price[i].innerText);
 
-    }
-    else if( t == 0){
-      sell_sum += Number(total_price[i].innerText);
-    }
-    if(sell_sum == 0){
-      revenue = 0
-    }
-    else{
-    revenue = sell_sum - buys_sum;
-    }
-    
-}
-
-document.getElementById("result").innerText = revenue;
+document.getElementById("result").innerText = sum;
 		
 
     </script>

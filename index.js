@@ -6,14 +6,21 @@ const db = require("./database")
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "images")));
 const  moment = require("moment");
 app.locals.moment = moment;
 app.use(express.static(path.join(__dirname,"public")));
+app.use( express.static( "images" ) );
 
 var order_session = null
 var credit_session = null
 app.get("/", (req, res) => {
     res.render("index")
+})
+
+
+app.get("/index", (req, res) => {
+  res.render("index")
 })
 app.get("/view_creditors", (req, res) => {
   creds = db.get_creditors()
@@ -27,7 +34,7 @@ app.get("/view_currentInvent", (req, res) => {
   res.render("view_currentInvent",{current:invt})
 })
 app.get("/view_product", (req, res) => {
-  prods = db.get_products()
+  prods = db.get_product()
   console.log("getting products")
   console.log(prods)
   res.render("view_product",{product:prods,del:null,update:null})
@@ -65,7 +72,7 @@ app.get("/insert_creditorProfile", (req, res) => {
    // trans = db.get_transactions()
     //console.log(trans)
   
-    res.render("view_transactions", {transaction: null} );
+    res.render("view_trans", {transaction: null} );
   });
 
   app.post("/transaction_all",(req,res) =>{
@@ -90,7 +97,6 @@ app.post("/insert_product", (req, res) => {
     }
     console.log(s)
 })
-<<<<<<< HEAD
 
 app.post("/insert_creditorProfile", (req, res) => {
 
@@ -130,12 +136,12 @@ app.post("/insert_creditorProfile", (req, res) => {
     s = db.update_product(req.body);
     if (s) {
 
-      prods = db.get_products();
+      prods = db.get_product();
   res.render("view_product",{product: prods,del:null,update:true});
     
     }
     else {
-      prods = db.get_products();
+      prods = db.get_product();
       res.render("view_product",{product: prods,del:null,update:false});
     }
     console.log(s);
@@ -202,8 +208,6 @@ app.post("/insert_creditorProfile", (req, res) => {
     }
 
   })
-=======
->>>>>>> 1fa54f6c4740f530846bbc30af25cfd67317c1b1
 app.get("/place_order1", (req, res) => {
     s = db.get_suppilers()
     //p = db.get_products()
@@ -289,11 +293,11 @@ app.get("/del_product", (req, res) => {
   console.log(req.body);
   s = db.del_product(req.query);
   if(s){
-    prods = db.get_products();
+    prods = db.get_product();
   res.render("view_product",{product: prods,del:true , update:null});
 }
 else{
-  prods = db.get_products();
+  prods = db.get_product();
   res.render("view_product",{product:prods,del:false,update:null});
 }
 
@@ -351,7 +355,7 @@ app.get("/update_supplier",(req,res)=>{
 )
 app.get("/update_product",(req,res) =>{
   console.log(req.query);
-   prods= db.get_product_by_id(req.query)
+   prods= db.get_product_byId(req.query)
   console.log(prods)
   console.log(" product id form update ")
   grp = db.get_groups()

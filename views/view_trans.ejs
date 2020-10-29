@@ -1,0 +1,109 @@
+
+<%- include("header.ejs") %>
+
+<body class="mt 32">
+  <%- include("navbar.ejs")%>
+ 
+<div style="margin-top: 30px;" >
+
+    <div style="margin-top: 15px; margin-left: 40px; margin-right: 40px;">
+        <form class="col-sm-10" action="/transaction_all" method="post">
+            <div class="input-group">
+                <label for="name">From </label> <input type="date" class="form-control" id="from_date" name="from_date" placeholder="From"/>
+                <span class="input-group-addon">---</span>
+                <label for="name">To</label> <input type="date" id ="to_date"  name="to_date" class="form-control" placeholder="To"/>
+            </div>
+            <button type="submit" class="btn " style="background-color: #eb2d53; margin-top: 4px; margin-left: 965px;"> Submit</button>
+        </form>
+         
+            </div>
+
+            
+
+            <% if(transaction != null) {%>
+
+    <div class="container">
+        <h3>
+            <span>Transaction  </span>
+            <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
+        </h3>
+        <div style="margin-left: 10px; margin-top: 5px; ">
+            <div class="alert alert-info" role="alert">
+            Total Revenue = Rs.<label id="result">x 
+        </div>
+    </div>
+    
+        <table class="table table-striped mt32 customers-list" style="background-color: white;">
+            <thead>
+                <tr>
+                  
+                        <th>Id</th>
+                        <th >Type</th>
+                        <th >Product_Id</th>
+                        <th >Quantity</th>
+                        <th >Date</th>
+                        <th>Price_per_unit</th>
+                        <th>Total Price</th>
+                
+                    
+                      
+                </tr>
+            </thead>
+            <tbody>
+                <%  console.log("view trans")
+                console.log(transaction);
+                var sale_sum = 0;
+                var buy_sum = 0;
+                var revenue = 0;
+                var type_p = " "
+                var total_price = 0;
+        
+                for(let i = 0; i<transaction.length; i++){ 
+                     type_p = transaction[i].type;
+                     total_price =((transaction[i].price_per_unit)*(transaction[i].quantity));
+                %>
+                <tr>
+                    <td><%=transaction[i].id%></td>
+        <td class="cp"><%=transaction[i].type%></td>
+        <td><%=transaction[i].product_id%></td>
+        <td><%=transaction[i].quantity%></td>
+        <td><%=moment(transaction[i].p_date).format( 'MM/DD/YYYY')%></td>
+        <td><%="Rs."+transaction[i].price_per_unit%></td>
+        <td class="qt"> <%="Rs."+total_price%></td>
+      </tr>
+              <%}%>
+
+            </tbody>
+        </table>
+    </div>
+  <% } %>
+    </div>
+    <div>
+        </div>
+
+            
+             <script type="text/javascript">
+                var numbers = document.querySelectorAll(".cp");
+	var numb = document.querySelectorAll(".qt");
+var total = 1;
+var sum = 0;
+console.log(numbers)
+console.log(numb)
+
+for (var i = 0; i < numbers.length; i++)
+{
+    console.log( Number(numb[i].innerText));
+    sum += Number(numbers[i].innerText) * Number(numb[i].innerText) ;
+}
+
+document.getElementById("result").innerText = sum;
+		
+
+    </script>
+    <script src="trans_view.js" />
+    
+        
+    
+</body>
+
+<%- include("footer.ejs") %>

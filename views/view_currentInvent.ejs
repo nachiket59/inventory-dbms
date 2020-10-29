@@ -18,7 +18,7 @@
         </div>
     </div>
     
-        <table class="table table-striped mt32 customers-list">
+        <table class="table table-striped mt32 customers-list" style="background-color: white;">
             <thead>
                 <tr>
                     <th>Product ID</th>
@@ -75,9 +75,12 @@
 	var numb = document.querySelectorAll(".qt");
 var total = 1;
 var sum = 0;
+console.log(numbers)
+console.log(numb)
 
 for (var i = 0; i < numbers.length; i++)
 {
+    console.log( Number(numb[i].innerText));
     sum += Number(numbers[i].innerText) * Number(numb[i].innerText) ;
 }
 
