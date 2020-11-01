@@ -15,7 +15,7 @@ app.use( express.static( "images" ) );
 var order_session = null
 var credit_session = null
 app.get("/", (req, res) => {
-    res.render("index")
+    res.render("login",{log:null})
 })
 
 
@@ -338,7 +338,7 @@ app.get("/update_creditor",(req,res) =>{
 } )
 
 app.get("/login",(req,res) =>{
-  res.render("login")
+  res.render("login",{log : null})
 })
 app.get("/update_supplier",(req,res)=>{
   console.log(req.query);
