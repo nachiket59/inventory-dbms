@@ -53,6 +53,7 @@ let tableFromJson = (data) => {
     // Create a table.
     const table = document.createElement("table");
     table.classList.add("table")
+    table.style.backgroundColor = "white"
     table.classList.add("table-bordered")
     // Create table header row using the extracted headers above.
     let tr = table.insertRow(-1);                   // table row.

@@ -10,6 +10,8 @@
             <label for="name">To</label> <input type="date" id ="to_date"  name="to_date" class="form-control" placeholder="To"/>
         </div>
        
+        
+       
 <button type="submit" class="btn " style="background-color: #eb2d53; margin-top: 4px; margin-left: 965px;"> Submit</button>
         </form>
   
@@ -45,6 +47,7 @@
         <% 
         console.log("view trans")
         console.log(transaction);
+        var sale = ""
         var sale_sum = 0;
         var buy_sum = 0;
         var revenue = 0;
@@ -54,17 +57,24 @@
         for(let i = 0; i<transaction.length; i++){ 
              type_p = transaction[i].type;
              total_price =((transaction[i].price_per_unit)*(transaction[i].quantity));
-            if(type_p =='sales' || type_p =='sale' ){
+            if(type_p == 0  ){
+                sale = "sale"
                 sale_sum =( sale_sum + total_price);
             }
-            else if (type_p =='buy'){
+            else if (type_p == 1){
+                sale = "buy"
                 buy_sum = (buy_sum + total_price);
             }
         %>
         <tbody>
-      <tr>
-        <th ><%=transaction[i].id%></th>
-        <td class="cp"><%=transaction[i].type%></td>
+          <% if(type_p == 0  ){  %>
+         <tr  class="table-success">
+          <% } else { %>
+            <tr  class="table-danger">
+              <% } %>
+
+        <td><%=transaction[i].id%></td>
+        <td class="cp"><%=sale%></td>
         <td><%=transaction[i].product_id%></td>
         <td><%=transaction[i].quantity%></td>
         <td><%=moment(transaction[i].p_date).format( 'MM/DD/YYYY')%></td>
@@ -73,7 +83,10 @@
       </tr>
       <% }; 
         revenue = (sale_sum - buy_sum)
+        console.log("revenue");
+        console.log(revenue);
       %> 
+      <input type="hidden" id="revenue"  value="<%=revenue%>"/>
     </tbody>
     </table>
 
@@ -91,6 +104,9 @@
     <% } %>
 
     <script type="text/javascript">
+      var ren = document.getElementById("revenue").value;
+      console.log(ren)
+      document.getElementById("result").innerText = ren;
                 var numbers = document.querySelectorAll(".cp");
 	var numb = document.querySelectorAll(".qt");
 var total = 1;
@@ -102,7 +118,7 @@ var sum = 0;
       }
 
 
-document.getElementById("result").innerText = sum;
+//document.getElementById("result").innerText = sum;
 		
 
     </script>
