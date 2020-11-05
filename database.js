@@ -38,7 +38,10 @@ insert_supplier = (data) => {
   insert_retailer = (data) => {
     let sql = "insert into retailer(username, password, name ) values (?,?,?)";
     try {
+      
       res = connection.query(sql, [data.username, data.password, data.name]);
+      console.log(res)
+      console.log("insert sucess")
       return true;
     } catch (err) {
       console.log(err);

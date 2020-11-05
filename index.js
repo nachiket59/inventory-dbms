@@ -281,22 +281,20 @@ app.post("/insert_creditorProfile", (req, res) => {
   });
   
   app.post("/insert_retailer", (req, res) => {
-    if (log == null){
-      res.render("login",{log:null})
   
-    }
-    else{
-    console.log(req.body);
+    
     s = db.insert_retailer(req.body);
     if (s) {
+      console.log("inserted sucess retiler ")
         res.render("login",{log : null})
     }
     else {
+      console.log("inserted not  sucess retiler ")
         res.render("login",{log : null})
     }
     console.log(s);
   }
-  });
+  );
 
   app.post("/insert_productGroup", (req, res) => {
     if (log == null){
